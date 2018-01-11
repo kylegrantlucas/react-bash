@@ -1,7 +1,7 @@
 import * as Util from './util';
 import { Errors } from './const';
 
-const helpCommands = ['clear', 'ls', 'cat', 'mkdir', 'cd', 'pwd', 'echo', 'printenv', 'whoami', 'rm'];
+const helpCommands = ['ls', 'cat', 'mkdir', 'cd', 'pwd', 'echo', 'printenv', 'whoami', 'rm'];
 
 export const help = {
     exec: (state) => {
@@ -15,11 +15,6 @@ export const help = {
     },
 };
 
-export const clear = {
-    exec: (state) => {
-        return Object.assign({}, state, { history: [] });
-    },
-};
 
 export const ls = {
     exec: (state, { flags, args }) => {

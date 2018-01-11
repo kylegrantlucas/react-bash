@@ -86,4 +86,16 @@ export default {
             color: '#5b65fb',
         }),
     }),
+    solarized: Object.assign({}, BaseStyles, {
+        body: Object.assign({}, BaseStyles.body, {
+            backgroundColor: '#073642',
+            color: '#657b83',
+        }),
+        header: Object.assign({}, BaseStyles.header, {
+            backgroundColor: '#dcdbdb',
+        }),
+        prefix: Object.assign({}, BaseStyles.prefix, {
+            color: '#859900',
+        }),
+    }),
 };

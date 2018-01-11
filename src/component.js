@@ -14,12 +14,12 @@ const noop = () => {};
 
 export default class Terminal extends Component {
 
-    constructor({ history, structure, extensions, prefix }) {
+    constructor({ history, structure, extensions, settings }) {
         super();
         this.Bash = new Bash(extensions);
         this.ctrlPressed = false;
         this.state = {
-            settings: { user: { username: prefix.split('@')[1] } },
+            settings,
             history: history.slice(),
             structure: Object.assign({}, structure),
             cwd: '',
@@ -41,7 +41,7 @@ export default class Terminal extends Component {
             updatedState.history = history.slice();
         }
         if (extensions) {
-            this.Bash.commands = Object.assign({}, extensions, BaseCommands);
+            this.Bash.commands = Object.assign({}, BaseCommands, extensions);
         }
         this.setState(updatedState);
     }
@@ -173,6 +173,7 @@ export default class Terminal extends Component {
 Terminal.Themes = {
     LIGHT: 'light',
     DARK: 'dark',
+    SOLARIZED: 'solarized',
 };
 
 Terminal.propTypes = {
@@ -185,6 +186,7 @@ Terminal.propTypes = {
     structure: PropTypes.object,
     styles: PropTypes.object,
     theme: PropTypes.string,
+    settings: PropTypes.object,
 };
 
 Terminal.defaultProps = {

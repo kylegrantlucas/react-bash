@@ -1,7 +1,7 @@
 {
-  "name": "react-bash",
-  "version": "1.6.0",
-  "description": "A configurable/extendable bash terminal component",
+  "name": "react-terminal-emulator",
+  "version": "1.0.6",
+  "description": "A configurable/extendable terminal component",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
   "scripts": {
@@ -19,11 +19,12 @@
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "authors": [
-    "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)"
+    "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)",
+    "Siyuan Gao <siyuangao@gmail.com> (https://github.com/r1cebank)"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zackargyle/react-bash.git"
+    "url": "https://github.com/r1cebank/react-bash.git"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -58,9 +59,9 @@
     "shell"
   ],
   "bugs": {
-    "url": "https://github.com/zackargyle/react-bash/issues"
+    "url": "https://github.com/r1cebank/react-bash/issues"
   },
-  "npmName": "react-bash",
+  "npmName": "react-terminal-emulator",
   "npmFileMap": [
     {
       "basePath": "/dist/",
