@@ -19,7 +19,7 @@ const history = [
 
 const structure = {
     '.hidden': {
-        file1: { content: 'The is the content for file1 in the <.hidden> directory.' },
+        file1: { content: 'The is the content for<br><br><br>file1 in the <.hidden> directory.' },
         file2: { content: 'The is the content for file2 in the <.hidden> directory.' },
         dir2: {
             file: { content: 'The is the content for <file> in the <.hidden> directory.' },

@@ -1,5 +1,6 @@
 import * as Util from './util';
 import { Errors } from './const';
+import renderHTML from 'react-render-html';
 
 const helpCommands = ['clear', 'ls', 'cat', 'mkdir', 'cd', 'pwd', 'echo', 'printenv', 'whoami', 'rm'];
 
@@ -60,7 +61,7 @@ export const cat = {
         } else {
             return Object.assign({}, state, {
                 history: state.history.concat({
-                    value: dir[fileName].content,
+                    value: renderHTML(dir[fileName].content),
                 }),
             });
         }
@@ -120,7 +121,7 @@ export const echo = {
             return envVariables[key.slice(1)] || '';
         });
         return Object.assign({}, state, {
-            history: state.history.concat({ value }),
+            history: state.history.concat(renderHTML({ value })),
         });
     },
 };

@@ -76,5 +76,8 @@
     "es/",
     "lib/"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react-render-html": "^0.6.0"
+  }
 }
