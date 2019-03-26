@@ -7,7 +7,7 @@ import Terminal from '../src/index';
 
 const baseEvent = { preventDefault: () => {} };
 
-describe('ReactBash component', () => {
+describe('ReactFish component', () => {
 
     it('should render with only a structure', () => {
         const wrapper = shallow(<Terminal />);
@@ -25,12 +25,12 @@ describe('ReactBash component', () => {
         it('should extend the BaseCommands with extensions', () => {
             const extensions = { foo: { exec: () => {} } };
             const wrapper = shallow(<Terminal extensions={extensions} />);
-            const commands = wrapper.instance().Bash.commands;
+            const commands = wrapper.instance().Fish.commands;
             chai.assert.isDefined(commands.ls);
             chai.assert.isDefined(commands.foo);
         });
 
-        it('should pass the file structure to bash', () => {
+        it('should pass the file structure to fish', () => {
             const structure = { dir: {}, file: { content: 'Foo' } };
             const wrapper = shallow(<Terminal structure={structure} />);
             const state = wrapper.state();
@@ -69,11 +69,11 @@ describe('ReactBash component', () => {
 
     describe('autocomplete', () => {
 
-        it('should use Bash.autocomplete', () => {
+        it('should use Fish.autocomplete', () => {
             const wrapper = shallow(<Terminal />);
             const instance = wrapper.instance();
             instance.refs = { input: { value: '' } };
-            const spy = sinon.spy(instance.Bash, 'autocomplete');
+            const spy = sinon.spy(instance.Fish, 'autocomplete');
             instance.attemptAutocomplete();
             chai.assert.strictEqual(spy.called, true);
         });
@@ -144,15 +144,15 @@ describe('ReactBash component', () => {
         });
 
         it('should handle the up arrow', () => {
-            sinon.stub(instance.Bash, 'hasPrevCommand').returns(true);
-            sinon.stub(instance.Bash, 'getPrevCommand').returns('Foo');
+            sinon.stub(instance.Fish, 'hasPrevCommand').returns(true);
+            sinon.stub(instance.Fish, 'getPrevCommand').returns('Foo');
             wrapper.find('input').simulate('keyup', keyEvent(38));
             chai.assert.strictEqual(instance.refs.input.value, 'Foo');
         });
 
         it('should handle the down arrow', () => {
-            sinon.stub(instance.Bash, 'hasNextCommand').returns(true);
-            sinon.stub(instance.Bash, 'getNextCommand').returns('Foo');
+            sinon.stub(instance.Fish, 'hasNextCommand').returns(true);
+            sinon.stub(instance.Fish, 'getNextCommand').returns('Foo');
             wrapper.find('input').simulate('keyup', keyEvent(40));
             chai.assert.strictEqual(instance.refs.input.value, 'Foo');
         });
@@ -163,18 +163,18 @@ describe('ReactBash component', () => {
         const submitEvent = (value) => Object.assign({ target: [{ value }] }, baseEvent);
         let wrapper;
         let instance;
-        let bashStub;
+        let fishStub;
 
         beforeEach(() => {
             wrapper = shallow(<Terminal />);
             instance = wrapper.instance();
             instance.refs = { input: { value: 'Foo', scrollIntoView: () => {} } };
-            bashStub = sinon.stub(instance.Bash, 'execute').returns({ cwd: 'bar' });
+            fishStub = sinon.stub(instance.Fish, 'execute').returns({ cwd: 'bar' });
         });
 
         it('should attempt to execute the command', () => {
             wrapper.find('form').simulate('submit', submitEvent('Foo'));
-            chai.assert.strictEqual(bashStub.called, true);
+            chai.assert.strictEqual(fishStub.called, true);
         });
 
         it('should update state', () => {

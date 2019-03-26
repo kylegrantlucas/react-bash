@@ -8,7 +8,7 @@ module.exports = {
         __dirname + '/index.js'
     ],
     output: {
-        filename: 'react-bash.js',
+        filename: 'react-fish.js',
         path: path.join(__dirname, 'dist'),
         publicPath: '/dist/'
     },

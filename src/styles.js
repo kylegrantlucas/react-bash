@@ -1,6 +1,6 @@
 const BaseStyles = {};
 
-BaseStyles.ReactBash = {
+BaseStyles.ReactFish = {
     borderRadius: '5px',
     display: 'flex',
     flexDirection: 'column',

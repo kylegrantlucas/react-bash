@@ -1,45 +1,45 @@
 import chai from 'chai';
-import * as BashParser from '../src/parser';
+import * as FishParser from '../src/parser';
 
-describe('BashParser', () => {
+describe('FishParser', () => {
 
     describe('parseInput', () => {
         it('should exist', () => {
-            chai.assert.isFunction(BashParser.parseInput);
+            chai.assert.isFunction(FishParser.parseInput);
         });
 
         it('should handle a simple command', () => {
-            const { name, input } = BashParser.parseInput('ls');
+            const { name, input } = FishParser.parseInput('ls');
             chai.assert.strictEqual(name, 'ls');
             chai.assert.strictEqual(input, 'ls');
         });
 
         it('should handle no args', () => {
-            const { name, flags } = BashParser.parseInput('ls');
+            const { name, flags } = FishParser.parseInput('ls');
             chai.assert.strictEqual(name, 'ls');
             chai.assert.strictEqual(Object.keys(flags).length, 0);
         });
 
         it('should handle anonymous args', () => {
-            const { args } = BashParser.parseInput('ls arg1 arg2');
+            const { args } = FishParser.parseInput('ls arg1 arg2');
             chai.assert.strictEqual(args[0], 'arg1');
             chai.assert.strictEqual(args[1], 'arg2');
         });
 
         it('should handle named args', () => {
-            const { args } = BashParser.parseInput('ls --test arg1');
+            const { args } = FishParser.parseInput('ls --test arg1');
             chai.assert.strictEqual(args.test, 'arg1');
         });
 
         it('should handle boolean flags', () => {
-            const { flags } = BashParser.parseInput('ls -l -a');
+            const { flags } = FishParser.parseInput('ls -l -a');
             chai.assert.strictEqual(Object.keys(flags).length, 2);
             chai.assert.strictEqual(flags.l, true);
             chai.assert.strictEqual(flags.a, true);
         });
 
         it('should handle grouped boolean flags', () => {
-            const { flags } = BashParser.parseInput('ls -la');
+            const { flags } = FishParser.parseInput('ls -la');
             chai.assert.strictEqual(Object.keys(flags).length, 2);
             chai.assert.strictEqual(flags.l, true);
             chai.assert.strictEqual(flags.a, true);
@@ -50,18 +50,18 @@ describe('BashParser', () => {
     describe('parse', () => {
 
         it('should exist', () => {
-            chai.assert.isFunction(BashParser.parse);
+            chai.assert.isFunction(FishParser.parse);
         });
 
         it('should handle a simple command', () => {
-            const parsedData = BashParser.parse('ls');
+            const parsedData = FishParser.parse('ls');
             chai.assert.strictEqual(parsedData.length, 1);
             chai.assert.strictEqual(parsedData[0].length, 1);
             chai.assert.strictEqual(parsedData[0][0].name, 'ls');
         });
 
         it('should handle multiple commands with ;', () => {
-            const [parsedData] = BashParser.parse('ls -la; cd test');
+            const [parsedData] = FishParser.parse('ls -la; cd test');
             const command1 = parsedData[0];
             const command2 = parsedData[1];
             chai.assert.strictEqual(command1.name, 'ls');
@@ -72,7 +72,7 @@ describe('BashParser', () => {
         });
 
         it('should handle multiple commands with &&', () => {
-            const dependencyList = BashParser.parse('ls -a && cd test');
+            const dependencyList = FishParser.parse('ls -a && cd test');
             const [dep1, dep2] = dependencyList;
             chai.assert.strictEqual(dependencyList.length, 2);
             chai.assert.strictEqual(dep1[0].name, 'ls');

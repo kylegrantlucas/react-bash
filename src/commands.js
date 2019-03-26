@@ -1,13 +1,13 @@
 import * as Util from './util';
 import { Errors } from './const';
 
-const helpCommands = ['ls', 'cat', 'mkdir', 'cd', 'pwd', 'echo', 'printenv', 'whoami', 'rm'];
+const helpCommands = ['clear', 'ls', 'cat', 'mkdir', 'cd', 'pwd', 'echo', 'printenv', 'whoami', 'rm'];
 
 export const help = {
     exec: (state) => {
         return Object.assign({}, state, {
             history: state.history.concat(
-                { value: 'React-bash:' },
+                { value: 'React-Fish:' },
                 { value: 'These shell commands are defined internally.  Type \'help\' to see this list.' },
                 ...helpCommands.map(value => ({ value }))
             ),
@@ -143,6 +143,12 @@ export const whoami = {
         return Object.assign({}, state, {
             history: state.history.concat({ value }),
         });
+    },
+};
+
+export const clear = {
+    exec: (state) => {
+        return Object.assign({}, state, { history: [] });
     },
 };
 

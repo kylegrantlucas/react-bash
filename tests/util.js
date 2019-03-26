@@ -112,7 +112,7 @@ describe('util method', () => {
 
         it('should return the static env variables', () => {
             const envVariables = Util.getEnvVariables(state);
-            chai.assert.strictEqual(envVariables.TERM_PROGRAM, 'ReactBash.app');
+            chai.assert.strictEqual(envVariables.TERM_PROGRAM, 'ReactFish.app');
         });
 
         it('should return the dynamic env variables', () => {
@@ -121,7 +121,7 @@ describe('util method', () => {
             chai.assert.strictEqual(envVariables.PWD, `/${state.cwd}`);
         });
 
-        it('should match the correct react-bash version', () => {
+        it('should match the correct react-fish version', () => {
             const envVariables = Util.getEnvVariables(state);
             chai.assert.strictEqual(envVariables.TERM_PROGRAM_VERSION, PACKAGE.version);
         });

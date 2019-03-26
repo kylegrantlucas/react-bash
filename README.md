@@ -1,19 +1,19 @@
 # \<Terminal /\>
 
-ReactBash is a configurable / extendable bash terminal component. It provides an easy way of adding a terminal to your application. The terminal has a few built in base commands, and allows a simple means of extending the understandable commands. It boasts things like autocomplete on tab, previous command navigation, and a test suite you can trust. It is easy to install and get started.
+ReactFish is a configurable / extendable fish terminal component. It provides an easy way of adding a terminal to your application. The terminal has a few built in base commands, and allows a simple means of extending the understandable commands. It boasts things like autocomplete on tab, previous command navigation, and a test suite you can trust. It is easy to install and get started.
 
 ```
-npm install --save react-bash
+npm install --save react-fish
 ```
 
-Try out the [DEMO](http://zackargyle.github.io/react-bash/)
+Try out the [DEMO](http://kylegrantlucas.github.io/react-fish/)
 
-![](https://raw.githubusercontent.com/zackargyle/react-bash/master/demo/screenshot.png)
+![](https://raw.githubusercontent.com/kylgrantlucas/react-fish/master/demo/screenshot.png)
 
 ### Props
 prop         | description
 ------------ | -----------
-`extensions` | An object of bash command extensions
+`extensions` | An object of fish command extensions
 `history`    | An array of initial history items
 `structure`  | An object representing the file system
 `theme`      | A string representing which `theme` to use (Terminal.Themes.LIGHT, Terminal.Themes.DARK)
@@ -35,10 +35,10 @@ command      | args/flags | description
 `whoami`     |            | prints out current user's username
 
 ### Extending the command list
-The `extension` prop is an easy way to extend the bash commands that can be parsed from the terminal input. In essence, each command is a state reducer returning a new terminal state. This provides a lot of flexibility. Each command has access to the `structure`, `history`, and `cwd`, and expects the object returned to be applied in `setState` of the React component. Note that each extension should keep the state immutable, otherwise the component will not update. If we were to extend the commands with and existing command like 'clear, here's how we could do it.
+The `extension` prop is an easy way to extend the fish commands that can be parsed from the terminal input. In essence, each command is a state reducer returning a new terminal state. This provides a lot of flexibility. Each command has access to the `structure`, `history`, and `cwd`, and expects the object returned to be applied in `setState` of the React component. Note that each extension should keep the state immutable, otherwise the component will not update. If we were to extend the commands with and existing command like 'clear, here's how we could do it.
 
 ```js
-import Terminal from 'react-bash';
+import Terminal from 'react-fish';
 
 export const clear = {
     exec: ({ structure, history, cwd }, command) => {
@@ -66,7 +66,7 @@ For the input `foo some/path -baz --hello world`, ReactBash would parse the inpu
 ```
 
 ### History
-The history prop and state arrays are lists of items that will be displayed as history items in the terminal. Essentially, anything that gets 'printed' out onto the terminal is a `history` item. The `prefix` prop is available to alter the bash user info that prepends commands in the history. If you'd like to add a welcome message to the initial state of the terminal, it's as easy as passing in a prop.
+The history prop and state arrays are lists of items that will be displayed as history items in the terminal. Essentially, anything that gets 'printed' out onto the terminal is a `history` item. The `prefix` prop is available to alter the fish user info that prepends commands in the history. If you'd like to add a welcome message to the initial state of the terminal, it's as easy as passing in a prop.
 
 ```js
 const history = [{ value: 'Welcome to the terminal!' }];

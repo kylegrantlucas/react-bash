@@ -1,6 +1,6 @@
 {
-  "name": "react-terminal-emulator",
-  "version": "1.0.6",
+  "name": "react-fish",
+  "version": "1.0.0",
   "description": "A configurable/extendable terminal component",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -11,20 +11,21 @@
     "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-core/register --reporter spec tests/*.js",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js dist/react-bash.js",
-    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js dist/react-bash.min.js",
-    "build:demo": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack demo/index.js demo/dist/react-bash.js",
+    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js dist/react-fish.js",
+    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js dist/react-fish.min.js",
+    "build:demo": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack demo/index.js demo/dist/react-fish.js",
     "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
     "gh-pages": "npm run build:demo && git add -f demo/dist && git commit -m \"deploy to gh-pages\" && git subtree split --prefix demo -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages",
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "authors": [
     "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)",
-    "Siyuan Gao <siyuangao@gmail.com> (https://github.com/r1cebank)"
+    "Siyuan Gao <siyuangao@gmail.com> (https://github.com/r1cebank)",
+    "Kyle Lucas <kglucas93@gmail.com> (https://github.com/kylegrantlucas"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/r1cebank/react-bash.git"
+    "url": "https://github.com/kylegrantlucas/react-fish.git"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -54,14 +55,14 @@
   "keywords": [
     "react",
     "react-component",
-    "bash",
+    "fish",
     "terminal",
     "shell"
   ],
   "bugs": {
-    "url": "https://github.com/r1cebank/react-bash/issues"
+    "url": "https://github.com/kylegrantlucas/react-fish/issues"
   },
-  "npmName": "react-terminal-emulator",
+  "npmName": "react-fish",
   "npmFileMap": [
     {
       "basePath": "/dist/",

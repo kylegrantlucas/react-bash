@@ -22,7 +22,7 @@ var config = {
         ]
     },
     output: {
-        library: 'ReactBash',
+        library: 'ReactFish',
         libraryTarget: 'umd'
     },
     plugins: [

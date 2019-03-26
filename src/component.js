@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as BaseCommands from './commands';
-import Bash from './bash';
+import Fish from './fish';
 import Styles from './styles';
 
 const CTRL_CHAR_CODE = 17;
@@ -16,7 +16,7 @@ export default class Terminal extends Component {
 
     constructor({ history, structure, extensions, settings }) {
         super();
-        this.Bash = new Bash(extensions);
+        this.Fish = new Fish(extensions);
         this.ctrlPressed = false;
         this.state = {
             settings,
@@ -41,7 +41,7 @@ export default class Terminal extends Component {
             updatedState.history = history.slice();
         }
         if (extensions) {
-            this.Bash.commands = Object.assign({}, BaseCommands, extensions);
+            this.Fish.commands = Object.assign({}, BaseCommands, extensions);
         }
         this.setState(updatedState);
     }
@@ -61,12 +61,12 @@ export default class Terminal extends Component {
     }
 
     /*
-     * Forward the input along to the Bash autocompleter. If it works,
+     * Forward the input along to the Fish autocompleter. If it works,
      * update the input.
      */
     attemptAutocomplete() {
         const input = this.refs.input.value;
-        const suggestion = this.Bash.autocomplete(input, this.state);
+        const suggestion = this.Fish.autocomplete(input, this.state);
         if (suggestion) {
             this.refs.input.value = suggestion;
         }
@@ -101,19 +101,19 @@ export default class Terminal extends Component {
     handleKeyUp(evt) {
         if (evt.which === L_CHAR_CODE) {
             if (this.ctrlPressed) {
-                this.setState(this.Bash.execute('clear', this.state));
+                this.setState(this.Fish.execute('clear', this.state));
             }
         } else if (evt.which === C_CHAR_CODE) {
             if (this.ctrlPressed) {
                 this.refs.input.value = '';
             }
         } else if (evt.which === UP_CHAR_CODE) {
-            if (this.Bash.hasPrevCommand()) {
-                this.refs.input.value = this.Bash.getPrevCommand();
+            if (this.Fish.hasPrevCommand()) {
+                this.refs.input.value = this.Fish.getPrevCommand();
             }
         } else if (evt.which === DOWN_CHAR_CODE) {
-            if (this.Bash.hasNextCommand()) {
-                this.refs.input.value = this.Bash.getNextCommand();
+            if (this.Fish.hasNextCommand()) {
+                this.refs.input.value = this.Fish.getNextCommand();
             } else {
                 this.refs.input.value = '';
             }
@@ -127,7 +127,7 @@ export default class Terminal extends Component {
 
         // Execute command
         const input = evt.target[0].value;
-        const newState = this.Bash.execute(input, this.state);
+        const newState = this.Fish.execute(input, this.state);
         this.setState(newState);
         this.refs.input.value = '';
     }
@@ -146,7 +146,7 @@ export default class Terminal extends Component {
         const { history, cwd } = this.state;
         const style = Object.assign({}, Styles[theme] || Styles.light, styles);
         return (
-            <div className="ReactBash" style={style.ReactBash}>
+            <div className="ReactFish" style={style.ReactFish}>
                 <div style={style.header}>
                     <span style={style.redCircle} onClick={onClose}></span>
                     <span style={style.yellowCircle} onClick={onMinimize}></span>

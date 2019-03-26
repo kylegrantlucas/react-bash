@@ -1,11 +1,11 @@
-import ReactBash from './component';
-import * as BashUtil from './util';
-import * as BashConst from './const';
+import ReactFish from './component';
+import * as FishUtil from './util';
+import * as FishConst from './const';
 
 
-export default ReactBash;
+export default ReactFish;
 
 export {
-    BashConst,
-    BashUtil,
+    FishConst,
+    FishUtil,
 };

@@ -1,9 +1,9 @@
 import * as Util from './util';
 import { Errors } from './const';
 import * as BaseCommands from './commands';
-import * as BashParser from './parser';
+import * as FishParser from './parser';
 
-export default class Bash {
+export default class Fish {
 
     constructor(extensions = {}) {
         this.commands = Object.assign({}, BaseCommands, extensions);
@@ -31,7 +31,7 @@ export default class Bash {
             }),
         });
 
-        const commandList = BashParser.parse(input);
+        const commandList = FishParser.parse(input);
         return this.runCommands(commandList, newState);
     }
 
