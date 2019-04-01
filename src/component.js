@@ -158,6 +158,7 @@ export default class Terminal extends Component {
                         <span style={style.prefix}>{`${prefix} ~${cwd} $`}</span>
                         <input
                           autoComplete="off"
+                          autoCapitalize="off"
                           onKeyDown={this.handleKeyDown}
                           onKeyUp={this.handleKeyUp}
                           ref="input"
